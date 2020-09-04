@@ -13,6 +13,15 @@ const int RELAY_3_SEQ[] = {5000, 2000};
 const int PAUSE_AFTER_SEQ = 5000;
 const int ASSUME_NO_MOVEMENT = 10000;
 
+/*
+ * Status LED
+ * ------------------
+ * Off: Init
+ * Short blink every 2 seconds: waiting for movement
+ * On: Executing scare sequence
+ * Rapid blink: Sequence ended, pauising for PAUSE_AFTER_SEQ ms
+ */
+
 
 int totalExecutionTime = 0;
 
@@ -35,10 +44,11 @@ void setup() {
   Serial.println(totalExecutionTime);
   Serial.print("Waiting for radar to init...");
   delay(2000); //Let the radar init
-  Serial.println("Done. Program starting");
+  Serial.println("Done.");
 }
 
 void loop() {
+  Serial.println("Waiting for movement");
   bool b = digitalRead(PIN_RADAR_IN);
   bool statusLedState = true;
   unsigned long lastStatusLedChange = 0;
@@ -72,8 +82,6 @@ void loop() {
       break;
     }
   }
-  Serial.println("Waiting for movement");
-
 }
 
 void runSequence() {
