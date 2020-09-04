@@ -10,7 +10,7 @@ const int RELAY_2_SEQ[] = {3000, 5000};
 const int RELAY_3_SEQ[] = {1000, 4000};
 
 const int PAUSE_AFTER_SEQ = 5000;
-const int ASSUME_NO_MOVEMENT_SEC = 10000;
+const int ASSUME_NO_MOVEMENT = 10000;
 
 
 int totalExecutionTime = 0;
@@ -51,9 +51,9 @@ void loop() {
     b = digitalRead(PIN_RADAR_IN);
     delay(100);
     unsigned long t2 = millis() - t1;
-    if (t2 >= ASSUME_NO_MOVEMENT_SEC) {
+    if (t2 >= ASSUME_NO_MOVEMENT) {
       Serial.print("Clearing movement after ");
-      Serial.print(ASSUME_NO_MOVEMENT_SEC);
+      Serial.print(ASSUME_NO_MOVEMENT);
       Serial.println("ms");
       break;
     }
