@@ -4,7 +4,7 @@ const int PIN_RELAY_2 = 4;
 const int PIN_RELAY_3 = 5;
 const int PIN_STATUS_LED = LED_BUILTIN;
 
-//First numner: time after movement detection, 2nd number: duration.
+//First number: time after movement detection, 2nd number: duration.
 //Example {5,2} = Wait 5 seconds after movement, turn on realy for 2.
 const int RELAY_1_SEQ[] = {1000, 2000};
 const int RELAY_2_SEQ[] = {3000, 2000};
@@ -121,5 +121,6 @@ void runSequence() {
     b = !b;
     l = millis() - start;
   }
+  Serial.println("done.");
   digitalWrite(PIN_STATUS_LED, LOW);
 }
